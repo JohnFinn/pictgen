@@ -45,13 +45,13 @@ function main() {
     canvas.width = 1000;
     document.body.appendChild(canvas);
     var image1 = new Image();
-    image1.src = 'https://source.unsplash.com/collection/1127167/500x500';
+    image1.src = 'https://source.unsplash.com/collection/1127167';
     var image2 = new Image();
-    image2.src = 'https://source.unsplash.com/collection/1127168/500x500';
+    image2.src = 'https://source.unsplash.com/collection/1127168';
     var image3 = new Image();
-    image3.src = 'https://source.unsplash.com/collection/1127169/500x500';
+    image3.src = 'https://source.unsplash.com/collection/1127169';
     var image4 = new Image();
-    image4.src = 'https://source.unsplash.com/collection/1127160/500x500';
+    image4.src = 'https://source.unsplash.com/collection/1127160';
     var collage = new RandomCollage(image1, image2, image3, image4);
     collage.draw(canvas);
 }
