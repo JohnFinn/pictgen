@@ -2,12 +2,6 @@ function randomBetween(from, to) {
     return from + Math.random() * (to - from);
 }
 
-function randomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 class RandomCollage {
 /*
     represents four images, and their relative sizes like in the picture below:
@@ -45,23 +39,20 @@ class RandomCollage {
     }
 }
 
-function randomImage() {
-    var image = new Image();
-    image.src = 'https://source.unsplash.com/collection/11271' + randomInt(0, 9) + randomInt(0, 9) + '/500x500';
-    return image;
-}
-
 function main() {
     var canvas = document.createElement('canvas');
     canvas.height = 1000;
     canvas.width = 1000;
     document.body.appendChild(canvas);
-    var collage = new RandomCollage(
-        randomImage(),
-        randomImage(),
-        randomImage(),
-        randomImage()
-    );
+    var image1 = new Image();
+    image1.src = 'https://source.unsplash.com/collection/1127167/500x500';
+    var image2 = new Image();
+    image2.src = 'https://source.unsplash.com/collection/1127168/500x500';
+    var image3 = new Image();
+    image3.src = 'https://source.unsplash.com/collection/1127169/500x500';
+    var image4 = new Image();
+    image4.src = 'https://source.unsplash.com/collection/1127160/500x500';
+    var collage = new RandomCollage(image1, image2, image3, image4);
     collage.draw(canvas);
 }
 
