@@ -28,13 +28,14 @@ class RandomCollage {
         this.y = randomBetween(0.3, 0.7);
     }
 
-    draw(canvas) {
+    draw(canvas, callback) {
         var y = canvas.height * this.y;
         var x = canvas.width * this.x;
         var canvasContext = canvas.getContext('2d');
-        this.image1.onload = function() { canvasContext.drawImage(this, 0, 0, x,            y);             }
-        this.image2.onload = function() { canvasContext.drawImage(this, x, 0, canvas.width, y);             }
-        this.image3.onload = function() { canvasContext.drawImage(this, 0, y, x,            canvas.height); }
-        this.image4.onload = function() { canvasContext.drawImage(this, x, y, canvas.width, canvas.height); }
+        var toLoad = 4;
+        this.image1.onload = function() { --toLoad; canvasContext.drawImage(this, 0, 0, x,            y            ); if (toLoad == 0) callback(); }
+        this.image2.onload = function() { --toLoad; canvasContext.drawImage(this, x, 0, canvas.width, y            ); if (toLoad == 0) callback(); }
+        this.image3.onload = function() { --toLoad; canvasContext.drawImage(this, 0, y, x,            canvas.height); if (toLoad == 0) callback(); }
+        this.image4.onload = function() { --toLoad; canvasContext.drawImage(this, x, y, canvas.width, canvas.height); if (toLoad == 0) callback(); }
     }
 }
