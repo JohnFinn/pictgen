@@ -13,7 +13,7 @@ class TextAndImage{
             canvasContext.fillStyle = '#ffffff'
             var lines = splitIntoLines(text, 4);
             for (var i = 0; i < lines.length; i += 1) {
-                canvasContext.fillText(lines[i], 0, 500 + 50*i);
+                canvasContext.fillText(lines[i], 0, 450 + 50*i);
             }
         }, 1000);
     }
