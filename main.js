@@ -57,9 +57,6 @@ function getQuote(callback){
 }
 
 function main() {
-    getQuote(function(text){
-        console.log(text);
-    });
     var canvas = document.createElement('canvas');
     canvas.height = 1000;
     canvas.width = 1000;
@@ -74,6 +71,15 @@ function main() {
     image4.src = 'https://source.unsplash.com/collection/1127160';
     var collage = new RandomCollage(image1, image2, image3, image4);
     collage.draw(canvas);
+    var canvasContext = canvas.getContext('2d');
+    getQuote(function(text){
+        setTimeout(function(){
+            console.log(text);
+            canvasContext.font = "40pt Calibri";
+            canvasContext.fillStyle = '#ffffff'
+            canvasContext.fillText(text, 0, 500);
+        }, 2000);
+    });
 }
 
 window.onload = main;
