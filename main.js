@@ -28,19 +28,10 @@ function main() {
     image3.src = 'https://source.unsplash.com/collection/1127169';
     var image4 = new Image();
     image4.src = 'https://source.unsplash.com/collection/1127160';
-    var collage = new RandomCollage(image1, image2, image3, image4);
-    collage.draw(canvas);
-    var canvasContext = canvas.getContext('2d');
     getQuote(function(text){
         console.log(text);
-        setTimeout(function(){
-            canvasContext.font = "40pt Calibri";
-            canvasContext.fillStyle = '#ffffff'
-            var lines = splitIntoLines(text, 4);
-            for (var i = 0; i < lines.length; i += 1) {
-                canvasContext.fillText(lines[i], 0, 500 + 50*i);
-            }
-        }, 1000);
+        var textAndImage = new TextAndImage(new RandomCollage(image1, image2, image3, image4), text);
+        textAndImage.draw(canvas);
     });
 }
 
