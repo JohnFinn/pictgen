@@ -15,6 +15,11 @@ function getQuote(callback){
     request.send('method=getQuote');
 }
 
+function download_canvas(el) {
+    var image = canvas.toDataURL('image/jpg');
+    el.href = image;
+};
+
 function main() {
     var canvas = document.createElement('canvas');
     canvas.height = 1000;
@@ -33,6 +38,12 @@ function main() {
         var textAndImage = new TextAndImage(new RandomCollage(image1, image2, image3, image4), text);
         textAndImage.draw(canvas);
     });
+    var saveButton = document.createElement('a');
+    saveButton.innerText = 'save';
+    saveButton.onclick   = 'download_canvas(this);';
+    saveButton.download  = 'collage.jpg';
+    saveButton.href      = '';
+    document.body.appendChild(saveButton);
 }
 
 window.onload = main;
