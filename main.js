@@ -56,6 +56,16 @@ function getQuote(callback){
     request.send('method=getQuote');
 }
 
+function splitIntoLines(text, wordsInLine) {
+    var words = text.split(' ');
+    var linesAmount = Math.floor(words.length / wordsInLine);
+    var lines = [];
+    for (var line = 0; line <= linesAmount; line += 1) {
+        lines.push(words.slice(line * wordsInLine, (line + 1) * wordsInLine).join(' '));
+    }
+    return lines;
+}
+
 function main() {
     var canvas = document.createElement('canvas');
     canvas.height = 1000;
@@ -73,12 +83,15 @@ function main() {
     collage.draw(canvas);
     var canvasContext = canvas.getContext('2d');
     getQuote(function(text){
+        console.log(text);
         setTimeout(function(){
-            console.log(text);
             canvasContext.font = "40pt Calibri";
             canvasContext.fillStyle = '#ffffff'
-            canvasContext.fillText(text, 0, 500);
-        }, 2000);
+            var lines = splitIntoLines(text, 4);
+            for (var i = 0; i < lines.length; i += 1) {
+                canvasContext.fillText(lines[i], 0, 500 + 50*i);
+            }
+        }, 1000);
     });
 }
 
